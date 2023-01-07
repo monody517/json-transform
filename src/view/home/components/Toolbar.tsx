@@ -4,7 +4,7 @@ const Toolbar = () => {
   return (
     <div
       style={{
-        height: '10vh',
+        height: '8vh',
         backgroundColor: '#2c3e50',
         borderTopLeftRadius: '12px',
         borderTopRightRadius: '12px',

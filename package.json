@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "antd": "^5.1.2",
     "jsoneditor": "^9.9.2",
     "jsoneditor-react": "^3.1.2",
     "md-editor-rt": "^2.7.2",
