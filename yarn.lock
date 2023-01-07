@@ -364,6 +364,11 @@
   resolved "https://registry.npmmirror.com/@sphinxxxx/color-conversion/-/color-conversion-2.2.2.tgz"
   integrity sha512-XExJS3cLqgrmNBIP3bBw6+1oQ1ksGjFh0+oClDKFYpCCqx/hlqwWO5KO/S63fzUo67SxI9dMrF0y5T/Ey7h8Zw==
 
+"@types/marked@^4.0.8":
+  version "4.0.8"
+  resolved "https://registry.npmmirror.com/@types/marked/-/marked-4.0.8.tgz#b316887ab3499d0a8f4c70b7bd8508f92d477955"
+  integrity sha512-HVNzMT5QlWCOdeuBsgXP8EZzKUf0+AXzN+sLmjvaB3ZlLqO+e4u0uXrdw9ub69wBKFs+c6/pA4r9sy6cCDvImw==
+
 "@types/prop-types@*":
   version "15.7.5"
   resolved "https://registry.npmmirror.com/@types/prop-types/-/prop-types-15.7.5.tgz"
@@ -728,6 +733,11 @@ magic-string@^0.27.0:
   integrity sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==
   dependencies:
     "@jridgewell/sourcemap-codec" "^1.4.13"
+
+md-editor-rt@^2.7.2:
+  version "2.7.2"
+  resolved "https://registry.npmmirror.com/md-editor-rt/-/md-editor-rt-2.7.2.tgz#ffac68a776a945c5b5d3a8efe7e3ffb734496c74"
+  integrity sha512-NG6O2X/wq56vYAYByimfvab0tPrDiTCqis3ESanGLRJ4SQHS0ljfqcm3iztpklHlkqPS2nOCScAlEs6+EO1aBA==
 
 mobius1-selectr@^2.4.13:
   version "2.4.13"
