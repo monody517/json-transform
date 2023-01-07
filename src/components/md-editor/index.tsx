@@ -5,13 +5,17 @@ import './index.scss'
 
 const MdEditor = () => {
 
-  const [text,setText] = useState('111')
+  const [text,setText] = useState('```ts\n'+ '```'
+  )
 
   return (
     <Editor
       modelValue={text}
-      preview={false}
+      previewOnly
       className={'md-editor'}
+      theme={'dark'}
+      codeTheme={'github'}
+      style={{backgroundColor: '#1a1a1a'}}
     />
 )
 

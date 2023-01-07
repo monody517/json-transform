@@ -1,6 +1,23 @@
 .page-wrapper{
-  padding: 5vh;
-  height: 90vh;
+  background: #ecf5ff;
+  min-height: 100vh;
+}
+
+.container{
+  box-shadow: #909399 4px 10px 60px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  max-width: 1536px;
+}
+
+.editor-container{
   display: flex;
   flex-direction: row;
   align-items: center;
