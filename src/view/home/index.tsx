@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import JsonEditor from "../../components/json-editor";
 import './index.scss'
 import MdEditor from "../../components/md-editor";
@@ -7,19 +7,33 @@ import {codeTypeList} from './code-type'
 import CodeTypeSelector from "./components/CodeTypeSelector";
 
 const Home = () => {
-  console.log(codeTypeList)
+
+  const [jsonCode,setJsonCode] = useState({"title": "JsonToAny 示例JSON (包含所有数据格式)"})
+  const [mdCodeText,setMdCodeText] = useState('')
+
+  const jsonToCode = (json: object)=>{
+    // const codeType = codeTypeList.find(
+    //   (item) => item.value ===
+    // )
+    const codeType = codeTypeList[0]
+
+    if(codeType){
+      setMdCodeText("" + codeType.transform(json))
+    }
+  }
+
+  useEffect(()=>{
+    jsonToCode(jsonCode)
+  },[jsonCode])
+
   return (
-    <div className="page-wrapper">
-      <div className="container">
-        <Toolbar />
-        <CodeTypeSelector />
-        <div className="editor-container">
-          <JsonEditor />
-            <MdEditor />
-        </div>
-
+    <div className="container">
+      <Toolbar />
+      <CodeTypeSelector />
+      <div className="editor-container">
+        <JsonEditor model={jsonCode} onChange={setJsonCode}/>
+        <MdEditor model={mdCodeText} />
       </div>
-
     </div>
   )
 }

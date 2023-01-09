@@ -3,14 +3,15 @@ import Editor from 'md-editor-rt';
 import 'md-editor-rt/lib/style.css';
 import './index.scss'
 
-const MdEditor = () => {
+interface Props{
+  model: string;
+}
 
-  const [text,setText] = useState('```ts\n'+ '```'
-  )
+const MdEditor = (props: Props) => {
 
   return (
     <Editor
-      modelValue={text}
+      modelValue={props.model}
       previewOnly
       className={'md-editor'}
       theme={'dark'}
