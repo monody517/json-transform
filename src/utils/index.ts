@@ -31,6 +31,8 @@ const _traverseProperty = (property: RootProperty,modelEntityList:Entity[]): Ent
     }
   });
 
+  console.log('property',property);
+
   const {key,type,properties} = property
   return {
     key,
