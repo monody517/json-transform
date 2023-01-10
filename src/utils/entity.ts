@@ -44,7 +44,6 @@ export const parseJsonToProperty = (target: Record<any,any>): RootProperty => {
 function handleArrayType({key,value}:{key:string,value:any}): ArrayProperty {
   const childrenTypes = new Set(value.map((item:any)=>getPropertyType(item)))  // 使用Set检查数组中的类型，当类型数大于1时，直接返回
   const childType = [...childrenTypes][0] as PropertyType;
-  console.log('childType',childType);
   let childProperty: ArrayChildProperty = {
     key,
     value: "",
@@ -60,7 +59,6 @@ function handleArrayType({key,value}:{key:string,value:any}): ArrayProperty {
       childProperty.value = value[0];
       properties = parseJsonToProperty(value[0]).properties
     }else{    // 子元素有多个，合并所有属性
-      console.log('value',value);
       const mergeObject = value.reduce((pre:Record<any, any>,item:Record<any, any>)=> Object.assign(pre,item),{})
       childProperty.value = mergeObject
       properties = parseJsonToProperty(mergeObject).properties

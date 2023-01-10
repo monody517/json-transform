@@ -47,7 +47,7 @@ const _traverseProperty = (property: RootProperty,modelEntityList:Entity[]): Ent
   }
 }
 
-export const parse = (jsonCode: object) => {
+export const parse = (jsonCode: object): Entity[] => {
   if(isNull(jsonCode)){
     throw Error("The Value cannot be null.");
   }

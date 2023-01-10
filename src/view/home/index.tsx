@@ -23,7 +23,7 @@ const Home = () => {
   }
 
   useEffect(()=>{
-    jsonToCode(jsonCode)
+    jsonToCode(jsonCode || "{}")
   },[jsonCode])
 
   return (

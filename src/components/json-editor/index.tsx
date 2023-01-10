@@ -13,7 +13,7 @@ const JsonEditor = (props: Props) => {
       <Editor
         allowedModes={['code','tree','form','text','view']}
         mode={'code'}
-        value={props.model}
+        value={props.model || "{}"}
         onChange={(e:object)=> {
           props.onChange(e)
         }}
