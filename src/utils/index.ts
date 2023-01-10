@@ -2,6 +2,7 @@ import {isNull, isObject} from "./shared";
 import {parseJsonToProperty} from "./entity";
 import {Entity} from "../types/entity";
 import {isArrayProperty, isObjectProperty, ObjectProperty, Property, RootProperty} from "../types/property";
+import {Options, TransformCode} from "../types/transform";
 
 const parseJsonToObject = (jsonCode: string): Record<any, any> => {
   let result = {};
@@ -47,6 +48,10 @@ const _traverseProperty = (property: RootProperty,modelEntityList:Entity[]): Ent
   }
 }
 
+/**
+ * 处理传入的json数据，转化为可用的对象
+ * @param jsonCode
+ */
 export const parse = (jsonCode: object): Entity[] => {
   if(isNull(jsonCode)){
     throw Error("The Value cannot be null.");
@@ -75,7 +80,26 @@ export const parse = (jsonCode: object): Entity[] => {
   }
   modelEntityList.unshift(root);  // 将最大的root对象放在返回数组的第一个
 
-  console.log('modelEntityList',modelEntityList);
-
   return modelEntityList  // 返回的是每一个object的实体类（key,type,properties,parent）
+}
+
+/**
+ * 转化函数
+ * @param list
+ * @param options
+ */
+export const transformCode: TransformCode = (list:Entity[],options:Options) => {
+  let code = ''
+
+  list.forEach(entity=>{
+    code += options.before?.({entity})
+    entity.properties.forEach(property=>{
+      const fn = options[property.type];
+      if(!fn){
+        code += options.default?.({property,entity})
+      }
+    })
+    code += options.after?.({entity})
+  })
+  return code
 }
