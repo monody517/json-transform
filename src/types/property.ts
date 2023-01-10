@@ -6,7 +6,7 @@ export type PropertyType = "object" | "array" | "boolean" | "string" | "number" 
 export const isArrayProperty = (val: Property): val is ArrayProperty => val.type === "array";
 export const isObjectProperty = (val: Property): val is ObjectProperty => val.type === "object";
 
-export type Property = NormalProperty
+export type Property = NormalProperty | ObjectProperty | ArrayProperty
 
 export interface NormalProperty {
   type: PropertyType,

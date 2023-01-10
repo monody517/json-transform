@@ -13,11 +13,16 @@ const parseJsonToObject = (jsonCode: string): Record<any, any> => {
   return result
 }
 
+/**
+ * 递归处理所有实体类，entity就是最终返回的数组item
+ * @param property
+ * @param modelEntityList
+ */
 const _traverseProperty = (property: RootProperty,modelEntityList:Entity[]): Entity => {
 
   const appendEntity = (itemProperty:ObjectProperty) => {
-    itemProperty.entity = _traverseProperty(itemProperty,modelEntityList)
-    modelEntityList.push(itemProperty.entity)
+    itemProperty.entity = _traverseProperty(itemProperty,modelEntityList)  // 给为object的字段递归添加entity
+    modelEntityList.push(itemProperty.entity)   // 将object的字段实体类放在最终返回的数组
   }
 
   property.properties?.forEach((item: Property) => {
@@ -68,9 +73,9 @@ export const parse = (jsonCode: object) => {
   }catch (e) {
     throw Error("traverse property error;" + e);
   }
-  modelEntityList.unshift(root);
+  modelEntityList.unshift(root);  // 将最大的root对象放在返回数组的第一个
 
   console.log('modelEntityList',modelEntityList);
 
-  return modelEntityList
+  return modelEntityList  // 返回的是每一个object的实体类（key,type,properties,parent）
 }
