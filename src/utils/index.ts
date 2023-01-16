@@ -3,6 +3,7 @@ import {parseJsonToProperty} from "./entity";
 import {Entity} from "../types/entity";
 import {isArrayProperty, isObjectProperty, ObjectProperty, Property, RootProperty} from "../types/property";
 import {Options, TransformCode} from "../types/transform";
+import {formatKey} from "./keyTransform";
 
 const parseJsonToObject = (jsonCode: string): Record<any, any> => {
   let result = {};
@@ -101,6 +102,9 @@ export const transformCode: TransformCode = (list:Entity[],options:Options) => {
       }
       if(isObjectProperty(property)){
         code += options.object?.({property,entity})
+      }
+      if(isArrayProperty(property)){
+        code += options.array?.({property: property as any,entity})
       }
     })
     code += options.after?.({entity})

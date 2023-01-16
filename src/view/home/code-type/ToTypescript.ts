@@ -6,7 +6,7 @@ export const ToTypescript: CodeTypeTransform = (json: object) => {
 
   const entities = parse(json)
 
-  const strToTsCode = (key: string, value: string) => `  ${key}: ${value};\n`;
+  const strToTsCode = (key: string, value: string) => `  ${key}${value};\n`;
 
   entities.forEach(entity=>{
     const {upKey} = formatKey(entity.key)
@@ -18,10 +18,21 @@ export const ToTypescript: CodeTypeTransform = (json: object) => {
         return `export interface ${entity.key} {\n`
       },
       default({property}){
-        return strToTsCode(property.key,property.type)
+        return strToTsCode(property.key,`: ${property.type}`)
       },
       object({property}){
-        return strToTsCode(property.key,property.entity.key)
+        return strToTsCode(property.key,`: ${property.entity.key}`)
+      },
+      array({property}){
+        const childProperty = property.childProperty
+        const {upKey} = formatKey(childProperty.key)
+        if(childProperty.type === 'object'){
+          return strToTsCode(property.key,`: ${upKey}[]`)
+        }
+        if(childProperty.type === 'null'){
+          return strToTsCode(property.key,'?: any[]')
+        }
+        return strToTsCode(property.key,`: ${childProperty.type}[]`)
       },
       after(){
         return '}\n\n'
