@@ -97,6 +97,10 @@ export const transformCode: TransformCode = (list:Entity[],options:Options) => {
       const fn = options[property.type];
       if(!fn){
         code += options.default?.({property,entity})
+        return
+      }
+      if(isObjectProperty(property)){
+        code += options.object?.({property,entity})
       }
     })
     code += options.after?.({entity})

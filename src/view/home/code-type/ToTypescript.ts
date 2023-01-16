@@ -20,10 +20,15 @@ export const ToTypescript: CodeTypeTransform = (json: object) => {
       default({property}){
         return strToTsCode(property.key,property.type)
       },
+      object({property}){
+        return strToTsCode(property.key,property.entity.key)
+      },
       after(){
         return '}\n\n'
+      },
+      null({property}){
+        return strToTsCode(property.key,'?:any');
       }
     })
-    console.log(code);
     return "```ts\n" + code + "\n```";
 }
