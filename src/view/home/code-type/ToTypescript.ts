@@ -13,7 +13,9 @@ export const ToTypescript: CodeTypeTransform = (json: object) => {
     entity.key = upKey
   })
 
-    const code = transformCode(entities,{
+  console.log(entities);
+
+  const code = transformCode(entities,{
       before({entity}){
         return `export interface ${entity.key} {\n`
       },

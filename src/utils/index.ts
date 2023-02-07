@@ -22,7 +22,7 @@ const parseJsonToObject = (jsonCode: string): Record<any, any> => {
  */
 const _traverseProperty = (property: RootProperty,modelEntityList:Entity[]): Entity => {
 
-  const appendEntity = (itemProperty:ObjectProperty) => {
+  const appendEntity = (itemProperty:ObjectProperty) => { // 给对象类型的元素添加entity自身描述
     itemProperty.entity = _traverseProperty(itemProperty,modelEntityList)  // 给为object的字段递归添加entity
     modelEntityList.push(itemProperty.entity)   // 将object的字段实体类放在最终返回的数组
   }

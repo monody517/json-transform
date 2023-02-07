@@ -8,7 +8,16 @@ import CodeTypeSelector from "./components/CodeTypeSelector";
 
 const Home = () => {
 
-  const [jsonCode,setJsonCode] = useState({"title": "JsonToAny 示例JSON (包含所有数据格式)"})
+  const [jsonCode,setJsonCode] = useState({  "title": "JsonToAny 示例JSON (包含所有数据格式)",
+    "obj": {
+      "name": "jack",
+      "age": "18",
+      "birthday": {
+        "day": 12,
+        "month": 6,
+        "year": 1998
+      }
+    }})
   const [mdCodeText,setMdCodeText] = useState('')
 
   const jsonToCode = (json: object)=>{
